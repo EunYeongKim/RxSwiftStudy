@@ -27,7 +27,6 @@
         <!--AppStore-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RxSwiftStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -93,10 +92,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qgt-wv-Eo6"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="neN-wC-9Ku"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -113,9 +108,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="AppStore" largeTitleDisplayMode="always" id="kOi-Pz-wMh"/>
                     <connections>
+                        <outlet property="searchBar" destination="lSv-RZ-fAR" id="xfS-kX-qBz"/>
                         <outlet property="tableView" destination="t1q-0l-JBk" id="kOI-e5-D62"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-559" y="90"/>
         </scene>

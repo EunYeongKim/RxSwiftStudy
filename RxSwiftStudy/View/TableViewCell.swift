@@ -23,7 +23,7 @@ class TableViewCell: UITableViewCell {
                 .bind(to: thumbImageView.rx.image)
                 .disposed(by: disposeBag)
             titleLabel.text = app.trackName
-            genreLabel.text = app.genres[0]
+            genreLabel.text = app.sellerName
             ratingLabel.text = String(format: "%.2f", app.averageUserRating)
         }
     }
