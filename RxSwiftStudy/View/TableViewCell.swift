@@ -12,19 +12,58 @@ import RxSwift
 class TableViewCell: UITableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var threeImageStackView: UIStackView!
+    @IBOutlet weak var oneImageStackView: UIStackView!
+   
+    @IBOutlet weak var previewImageView: UIImageView!
+    
+    @IBOutlet weak var previewImageView1: UIImageView!
+    @IBOutlet weak var previewImageView2: UIImageView!
+    @IBOutlet weak var previewImageView3: UIImageView!
+    
+    @IBOutlet weak var downloadBtn: UIButton!
     
     var app: App? {
         didSet {
             guard let app = app else { return }
+            let images = [previewImageView1, previewImageView2, previewImageView3]
+            
             Service.loadImage(app.artworkUrl512)
                 .observe(on: MainScheduler.instance)
                 .bind(to: thumbImageView.rx.image)
                 .disposed(by: disposeBag)
+            thumbImageView.setBorderRound(cornerRadius: 10.0)
+            
             titleLabel.text = app.trackName
-            genreLabel.text = app.sellerName
-            ratingLabel.text = String(format: "%.2f", app.averageUserRating)
+            descriptionLabel.text = app.description
+            downloadBtn.setBorderRound(cornerRadius: 15.0)
+            
+            for (index, url) in app.screenshotUrls.enumerated() {
+                if url.isWidthLongerThanHeight() {
+                    threeImageStackView.isHidden = true
+                    oneImageStackView.isHidden = false
+                    
+                    Service.loadImage(url)
+                        .observe(on: MainScheduler.instance)
+                        .bind(to: previewImageView.rx.image)
+                        .disposed(by: disposeBag)
+                    previewImageView.setBorderRound(cornerRadius: 10.0)
+                    break
+                    
+                } else {
+                    threeImageStackView.isHidden = false
+                    oneImageStackView.isHidden = true
+                    
+                    guard index < images.count , let imageView = images[index] else { return }
+                    Service.loadImage(url)
+                        .observe(on: MainScheduler.instance)
+                        .bind(to: imageView.rx.image)
+                        .disposed(by: disposeBag)
+                    imageView.setBorderRound(cornerRadius: 10.0)
+                }
+            }
         }
     }
     
@@ -40,4 +79,14 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        titleLabel.text = ""
+        descriptionLabel.text = ""
+        
+        thumbImageView.image = nil
+        previewImageView1.image = nil
+        previewImageView2.image = nil
+        previewImageView3.image = nil
+        previewImageView.image = nil
+    }
 }

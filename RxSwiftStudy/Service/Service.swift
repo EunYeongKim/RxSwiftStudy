@@ -16,7 +16,7 @@ struct Service {
             let url = URL(string: url)!
             let task = URLSession.shared.dataTask(with: url) { (data, _, err) in
                 guard err == nil else {
-                    emitter.onError(err!)
+//                    emitter.onError(err!)
                     return
                 }
                 

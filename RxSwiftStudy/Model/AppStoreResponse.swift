@@ -29,11 +29,13 @@ struct App: Codable {
     let sellerName: String
     let averageUserRating: Double
     let version: String
-//    let releaseNotes: String
+    let releaseDate: String
+    let currentVersionReleaseDate: String
+    let releaseNotes: String?
     
     enum CodingKeys: String, CodingKey {
         case trackID = "trackId"
-        case artworkUrl60, artworkUrl512, artworkUrl100, trackName, kind, screenshotUrls, description, sellerName, averageUserRating, version
+        case artworkUrl60, artworkUrl512, artworkUrl100, trackName, kind, screenshotUrls, description, sellerName, averageUserRating, version, releaseDate, releaseNotes, currentVersionReleaseDate
     }
     
 //    let ipadScreenshotUrls: [String]
