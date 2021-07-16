@@ -17,8 +17,8 @@ class AppCoordinator: Coordinator {
     func start() {
         let navigationController = UINavigationController()
         
-        let tableVCCoordinator = TableViewControllerCoordinator(navigationController: navigationController)
-        coordinate(to: tableVCCoordinator)
+        let searchVCCoordinator = SearchViewControllerCoordinator(navigationController: navigationController)
+        coordinate(to: searchVCCoordinator)
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

@@ -9,14 +9,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TableViewController: UIViewController {
-    
+class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
     var coordinator: VCFlow?
-    var viewModel = AppListViewModel()
+    var viewModel = SearchViewModel()
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -37,7 +36,7 @@ class TableViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.appObservable
-            .bind(to: tableView.rx.items(cellIdentifier: "appCell", cellType: TableViewCell.self)) { index, item, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: "searchResultCell", cellType: SearchResultCell.self)) { index, item, cell in
                 cell.app = item
             }
             .disposed(by: disposeBag)
@@ -50,8 +49,15 @@ class TableViewController: UIViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(App.self).bind { app in
-            self.coordinator?.coordinateToDetail(app: app)
+            let searchDetailViewModel = SearchDetailViewModel(appObservable: Observable.just(app))
+            self.coordinator?.coordinateToDetail(viewModel: searchDetailViewModel)
         }.disposed(by: disposeBag)
         
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }

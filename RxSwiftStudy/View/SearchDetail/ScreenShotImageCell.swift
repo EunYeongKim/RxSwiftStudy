@@ -9,17 +9,17 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var previewImageView: UIImageView!
+class ScreenShotImageCell: UICollectionViewCell {
+    @IBOutlet weak var screenShotImageView: UIImageView!
     
     var imageUrl: String? {
         didSet {
             guard let urlString = imageUrl else { return }
             Service.loadImage(urlString)
                 .observe(on: MainScheduler.instance)
-                .bind(to: previewImageView.rx.image)
+                .bind(to: screenShotImageView.rx.image)
                 .disposed(by: disposeBag)
-            previewImageView.setBorderRound(cornerRadius: 10.0)
+            screenShotImageView.setBorderRound(cornerRadius: 10.0)
         }
     }
     var disposeBag = DisposeBag()

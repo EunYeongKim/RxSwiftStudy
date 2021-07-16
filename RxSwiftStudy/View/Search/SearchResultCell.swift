@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class TableViewCell: UITableViewCell {
+class SearchResultCell: UITableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
