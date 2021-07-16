@@ -28,13 +28,16 @@ class SearchViewModel {
         
         Service.fetchData(url: url, type: AppStoreResponse.self)
             .observe(on: MainScheduler.instance)
-            .map { return $0.apps }
+            .map { return $0.appResponse }
             .take(1)
-            .subscribe(onNext: { [weak self] apps in
+            .subscribe(onNext: { [weak self] appResponse in
                 guard let `self` = self else { return }
+                
+                let apps = appResponse.map { return $0.toEntity() }
                 self.totalAppObservable.onNext(apps)
-                if apps.count > 0 {
-                    let endIndex = apps.count < self.VISIBLE_COUNT ? apps.count : self.VISIBLE_COUNT
+                
+                if appResponse.count > 0 {
+                    let endIndex = appResponse.count < self.VISIBLE_COUNT ? appResponse.count : self.VISIBLE_COUNT
                     self.appObservable.accept(Array(apps[0 ..< endIndex]))
                 }
             })

@@ -12,9 +12,10 @@ import RxCocoa
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Properties
-    var coordinator: VCFlow?
+    var coordinator: SearchDetailFlow?
     var viewModel = SearchViewModel()
     var disposeBag = DisposeBag()
     
@@ -34,7 +35,7 @@ class SearchViewController: UIViewController {
                 self?.viewModel.fetchAppList(query: query)
             })
             .disposed(by: disposeBag)
-
+        
         viewModel.appObservable
             .bind(to: tableView.rx.items(cellIdentifier: "searchResultCell", cellType: SearchResultCell.self)) { index, item, cell in
                 cell.app = item
@@ -49,7 +50,7 @@ class SearchViewController: UIViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(App.self).bind { app in
-            let searchDetailViewModel = SearchDetailViewModel(appObservable: Observable.just(app))
+            let searchDetailViewModel = SearchDetailViewModel(appObservable: BehaviorRelay<App>(value: app))
             self.coordinator?.coordinateToDetail(viewModel: searchDetailViewModel)
         }.disposed(by: disposeBag)
         

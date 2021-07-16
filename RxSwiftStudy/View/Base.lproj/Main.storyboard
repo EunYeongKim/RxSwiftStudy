@@ -145,6 +145,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="1b3-fa-TCm"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="Q97-bc-hAk">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -152,6 +156,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="t1q-0l-JBk" secondAttribute="bottom" id="DgR-GQ-loy"/>
                             <constraint firstItem="lSv-RZ-fAR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SOi-I2-MwS"/>
                             <constraint firstItem="t1q-0l-JBk" firstAttribute="top" secondItem="lSv-RZ-fAR" secondAttribute="bottom" id="YyO-Eq-oCU"/>
+                            <constraint firstItem="Q97-bc-hAk" firstAttribute="centerX" secondItem="t1q-0l-JBk" secondAttribute="centerX" id="lpB-of-rxa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lSv-RZ-fAR" secondAttribute="trailing" id="pNH-4a-C0b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t1q-0l-JBk" secondAttribute="trailing" id="tVw-P8-1Ok"/>
                             <constraint firstItem="t1q-0l-JBk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="y4J-wA-1P4"/>
@@ -160,6 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="검색" largeTitleDisplayMode="always" id="kOi-Pz-wMh"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Q97-bc-hAk" id="tEF-g3-vnJ"/>
                         <outlet property="searchBar" destination="lSv-RZ-fAR" id="xfS-kX-qBz"/>
                         <outlet property="tableView" destination="t1q-0l-JBk" id="kOI-e5-D62"/>
                     </connections>

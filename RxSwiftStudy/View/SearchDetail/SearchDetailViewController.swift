@@ -21,7 +21,6 @@ class SearchDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var viewModel: SearchDetailViewModel?
-    var app: App?
     var coordinator: SearchDetailViewControllerCoordinator?
     var disposeBag = DisposeBag()
     
@@ -41,7 +40,7 @@ class SearchDetailViewController: UIViewController {
                     .bind(to: self.iconImageView.rx.image)
                     .disposed(by: self.disposeBag)
                 self.iconImageView.setBorderRound(cornerRadius: 10.0)
-                
+
                 self.titleLabel.text = app.trackName
                 self.companyLabel.text = app.sellerName
                 self.versionLabel.text = app.version
@@ -55,12 +54,12 @@ class SearchDetailViewController: UIViewController {
 
 extension SearchDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return app?.screenshotUrls.count ?? 0
+        return viewModel?.appObservable.value.screenshotUrls.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenShotImageCell", for: indexPath) as! ScreenShotImageCell
-        let target = app?.screenshotUrls[indexPath.row]
+        let target = viewModel?.appObservable.value.screenshotUrls[indexPath.row]
         cell.imageUrl = target
 
         return cell

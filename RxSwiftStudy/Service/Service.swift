@@ -45,6 +45,8 @@ struct Service {
                 if let convertedData = try? JSONDecoder().decode(T.self, from: data) {
                     emitter.onNext(convertedData)
                 }
+                // FIXME:- decode error가 났을 경우 처리
+                
                 emitter.onCompleted()
             }
             task.resume()

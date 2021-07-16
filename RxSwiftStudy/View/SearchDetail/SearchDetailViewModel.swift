@@ -7,12 +7,13 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class SearchDetailViewModel {
     var disposeBag = DisposeBag()
-    var appObservable: Observable<App>
+    var appObservable: BehaviorRelay<App>
     
-    init(appObservable: Observable<App>) {
+    init(appObservable: BehaviorRelay<App>) {
         self.appObservable = appObservable
     }
 }

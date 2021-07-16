@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol VCFlow: class {
+protocol SearchDetailFlow: class {
     func coordinateToDetail(viewModel: SearchDetailViewModel)
 }
 
-class SearchViewControllerCoordinator: Coordinator, VCFlow {
+class SearchViewControllerCoordinator: Coordinator, SearchDetailFlow {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
