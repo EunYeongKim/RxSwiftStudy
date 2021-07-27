@@ -11,7 +11,7 @@ protocol SearchDetailFlow: class {
     func coordinateToDetail(viewModel: SearchDetailViewModel)
 }
 
-class SearchViewControllerCoordinator: Coordinator, SearchDetailFlow {
+class SearchListViewControllerCoordinator: Coordinator, SearchDetailFlow {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -19,7 +19,7 @@ class SearchViewControllerCoordinator: Coordinator, SearchDetailFlow {
     }
     
     func start() {
-        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        guard let searchVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchListViewController") as? SearchListViewController else { return }
         searchVC.coordinator = self
         navigationController.pushViewController(searchVC, animated: true)
     }

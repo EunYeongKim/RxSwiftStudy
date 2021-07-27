@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewModel {
+class SearchListViewModel {
     let VISIBLE_COUNT = 20
     var disposeBag = DisposeBag()
     var totalAppObservable = BehaviorSubject<[App]>(value: [])
