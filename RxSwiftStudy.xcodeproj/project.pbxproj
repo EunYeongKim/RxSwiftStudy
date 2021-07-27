@@ -27,6 +27,8 @@
 		28DA78EC269EB5A3005F66FA /* ScreenShotImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DA78EB269EB5A3005F66FA /* ScreenShotImageCell.swift */; };
 		28DA793A26A11248005F66FA /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DA793926A11248005F66FA /* SearchDetailViewModel.swift */; };
 		28DA793D26A13688005F66FA /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DA793C26A13688005F66FA /* App.swift */; };
+		28F8836926AA85D1005163FE /* SearchAppUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8836826AA85D1005163FE /* SearchAppUseCase.swift */; };
+		28F8836D26AA87BA005163FE /* SearchAppRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8836C26AA87BA005163FE /* SearchAppRepository.swift */; };
 		8FA3F6A99B0AF97A419141E1 /* Pods_RxSwiftStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7926F30EF8B84B693BEDEC41 /* Pods_RxSwiftStudy.framework */; };
 		917A504B2688701600E07F04 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917A504A2688701600E07F04 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		28DA78EB269EB5A3005F66FA /* ScreenShotImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotImageCell.swift; sourceTree = "<group>"; };
 		28DA793926A11248005F66FA /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		28DA793C26A13688005F66FA /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		28F8836826AA85D1005163FE /* SearchAppUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppUseCase.swift; sourceTree = "<group>"; };
+		28F8836C26AA87BA005163FE /* SearchAppRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppRepository.swift; sourceTree = "<group>"; };
 		4E8E92D398E1E909481D5DD1 /* Pods-RxSwiftStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftStudy.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftStudy/Pods-RxSwiftStudy.release.xcconfig"; sourceTree = "<group>"; };
 		7926F30EF8B84B693BEDEC41 /* Pods_RxSwiftStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		917A504A2688701600E07F04 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -102,13 +106,13 @@
 			isa = PBXGroup;
 			children = (
 				28DA792A26A1028F005F66FA /* App */,
+				28F8835726AA7A08005163FE /* Data */,
+				28F8835A26AA7A4A005163FE /* Domain */,
 				28DA78CE2698A654005F66FA /* Coordinator */,
+				28F8835B26AA7A64005163FE /* Presentation */,
 				28C68A30268C27A500C36B7E /* Utility */,
 				28992E9B26816FC5000E7BD7 /* Assets.xcassets */,
 				28992EA026816FC5000E7BD7 /* Info.plist */,
-				917A504826886F9A00E07F04 /* View */,
-				917A504726886F8200E07F04 /* Service */,
-				917A504626886F5900E07F04 /* Model */,
 			);
 			path = RxSwiftStudy;
 			sourceTree = "<group>";
@@ -132,17 +136,6 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		28DA792826A1023A005F66FA /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				28992E9626816FC3000E7BD7 /* SearchViewController.swift */,
-				28987AA42684405A00DDB689 /* SearchResultCell.swift */,
-				28DA78D62698A891005F66FA /* SearchViewControllerCoordinator.swift */,
-				917A504A2688701600E07F04 /* SearchViewModel.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		28DA792A26A1028F005F66FA /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,15 +145,128 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		28DA792B26A1029E005F66FA /* SearchDetail */ = {
+		28F8835726AA7A08005163FE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				28F8835826AA7A19005163FE /* Network */,
+				28F8835926AA7A2F005163FE /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		28F8835826AA7A19005163FE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				28992EAF2681744F000E7BD7 /* Service.swift */,
+				28F8836226AA81BD005163FE /* Entity */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		28F8835926AA7A2F005163FE /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836C26AA87BA005163FE /* SearchAppRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		28F8835A26AA7A4A005163FE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836326AA8284005163FE /* Model */,
+				28F8835C26AA7A76005163FE /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		28F8835B26AA7A64005163FE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836026AA8123005163FE /* AppSearchList */,
+				28F8836126AA815F005163FE /* AppDetails */,
+				28992E9D26816FC5000E7BD7 /* LaunchScreen.storyboard */,
+				28992E9826816FC3000E7BD7 /* Main.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		28F8835C26AA7A76005163FE /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836826AA85D1005163FE /* SearchAppUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		28F8836026AA8123005163FE /* AppSearchList */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836526AA82B7005163FE /* ViewModel */,
+				28F8836426AA82AA005163FE /* View */,
+			);
+			path = AppSearchList;
+			sourceTree = "<group>";
+		};
+		28F8836126AA815F005163FE /* AppDetails */ = {
+			isa = PBXGroup;
+			children = (
+				28F8836726AA82D8005163FE /* ViewModel */,
+				28F8836626AA82D3005163FE /* View */,
+			);
+			path = AppDetails;
+			sourceTree = "<group>";
+		};
+		28F8836226AA81BD005163FE /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				28992EAC26817182000E7BD7 /* AppStoreResponse.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		28F8836326AA8284005163FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				28DA793C26A13688005F66FA /* App.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		28F8836426AA82AA005163FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28992E9626816FC3000E7BD7 /* SearchViewController.swift */,
+				28987AA42684405A00DDB689 /* SearchResultCell.swift */,
+				28DA78D62698A891005F66FA /* SearchViewControllerCoordinator.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28F8836526AA82B7005163FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				917A504A2688701600E07F04 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		28F8836626AA82D3005163FE /* View */ = {
 			isa = PBXGroup;
 			children = (
 				28DA78CB2698A216005F66FA /* SearchDetailViewController.swift */,
 				28DA78EB269EB5A3005F66FA /* ScreenShotImageCell.swift */,
 				28DA78D92698ABF8005F66FA /* SearchDetailViewControllerCoordinator.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28F8836726AA82D8005163FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				28DA793926A11248005F66FA /* SearchDetailViewModel.swift */,
 			);
-			path = SearchDetail;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2FCA16856DB5E95AD5DCE0CB /* Pods */ = {
@@ -170,34 +276,6 @@
 				4E8E92D398E1E909481D5DD1 /* Pods-RxSwiftStudy.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		917A504626886F5900E07F04 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				28992EAC26817182000E7BD7 /* AppStoreResponse.swift */,
-				28DA793C26A13688005F66FA /* App.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		917A504726886F8200E07F04 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				28992EAF2681744F000E7BD7 /* Service.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		917A504826886F9A00E07F04 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				28DA792826A1023A005F66FA /* Search */,
-				28DA792B26A1029E005F66FA /* SearchDetail */,
-				28992E9D26816FC5000E7BD7 /* LaunchScreen.storyboard */,
-				28992E9826816FC3000E7BD7 /* Main.storyboard */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F8836926AA85D1005163FE /* SearchAppUseCase.swift in Sources */,
 				28DA78CC2698A216005F66FA /* SearchDetailViewController.swift in Sources */,
 				917A504B2688701600E07F04 /* SearchViewModel.swift in Sources */,
 				28DA78D42698A79F005F66FA /* AppCoordinator.swift in Sources */,
@@ -332,6 +411,7 @@
 				28987AA52684405A00DDB689 /* SearchResultCell.swift in Sources */,
 				28992E9526816FC3000E7BD7 /* SceneDelegate.swift in Sources */,
 				28992EAD26817182000E7BD7 /* AppStoreResponse.swift in Sources */,
+				28F8836D26AA87BA005163FE /* SearchAppRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

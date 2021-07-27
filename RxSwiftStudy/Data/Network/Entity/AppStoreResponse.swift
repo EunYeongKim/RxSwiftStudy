@@ -7,19 +7,19 @@
 
 import Foundation
 
-// MARK: - AppStoreResponse
-struct AppStoreResponse: Codable {
+// MARK: - AppStoreDTO
+struct AppStoreDTO: Codable {
     let resultCount: Int
-    let appResponse: [AppResponse]
+    let appDTO: [AppDTO]
     
     enum CodingKeys: String, CodingKey {
         case resultCount
-        case appResponse = "results"
+        case appDTO = "results"
     }
 }
 
-// MARK: - App
-struct AppResponse: Codable {
+// MARK: - AppDTO
+struct AppDTO: Codable {
     let trackID: Int
     let trackName: String
     let kind: String
@@ -39,7 +39,7 @@ struct AppResponse: Codable {
     }
 }
 
-extension AppResponse {
+extension AppDTO {
     func toEntity() -> App {
         return App(trackID: self.trackID,
                    trackName: self.trackName,

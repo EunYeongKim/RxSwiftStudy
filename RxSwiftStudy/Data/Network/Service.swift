@@ -8,6 +8,14 @@
 import Foundation
 import RxSwift
 
+enum APIError: Error {
+	case unknown
+	case httpStatus
+	case encodingModel
+	case decodingJSON
+	case dataNil
+}
+
 struct Service {
     static let APPSTOREAPI = "https://itunes.apple.com/search"
     
@@ -56,4 +64,20 @@ struct Service {
             }
         }
     }
+	
+	static func request<T: Codable>(url: URL, type: T.Type, completion: @escaping(Result<T, APIError>) -> Void) {
+		let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
+			guard let data = data else {
+				completion(.failure(.dataNil))
+				return
+			}
+			if let convertedData = try? JSONDecoder().decode(T.self, from: data) {
+				completion(.success(convertedData))
+			} else {
+				completion(.failure(.decodingJSON))
+			}
+		}
+		
+		task.resume()
+	}
 }
