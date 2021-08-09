@@ -15,8 +15,11 @@ class SearchListViewModel {
     var disposeBag = DisposeBag()
     var totalAppObservable = BehaviorSubject<[App]>(value: [])
     var appObservable = BehaviorRelay<[App]>(value: [])
+	var showLoading = BehaviorRelay<Bool>(value: false)
 
     func fetchAppList(query: String) {
+		showLoading.accept(true)
+		
 		let usecase = SearchAppUseCase(searchAppRepository: SearchAppRepository())
 		let apps = usecase.execute(request: SearchAppUseCaseRequest(query: query))
 			
@@ -26,6 +29,7 @@ class SearchListViewModel {
 			if apps.count > 0 {
 				let endIndex = apps.count < self.VISIBLE_COUNT ? apps.count : self.VISIBLE_COUNT
 				self.appObservable.accept(Array(apps[0 ..< endIndex]))
+				self.showLoading.accept(false)
 			}
 		})
 		.disposed(by: disposeBag)

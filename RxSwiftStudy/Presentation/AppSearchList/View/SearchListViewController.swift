@@ -41,6 +41,10 @@ class SearchListViewController: UIViewController {
 				cell.bindViewModel(viewModel: SearchListItemViewModel(app: item))
             }
             .disposed(by: disposeBag)
+		
+		viewModel.showLoading
+			.bind(to: activityIndicator.rx.isAnimating)
+			.disposed(by: disposeBag)
         
         tableView.rx.prefetchRows
             .subscribe(onNext: { [weak self] indexPaths in
