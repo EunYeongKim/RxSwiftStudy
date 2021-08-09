@@ -13,7 +13,6 @@ protocol SearchAppUseCaseProtocol {
 }
 
 class SearchAppUseCase : SearchAppUseCaseProtocol {
-	
 	private let searchAppRepository: SearchAppRepository
 	
 	init(searchAppRepository: SearchAppRepository) {

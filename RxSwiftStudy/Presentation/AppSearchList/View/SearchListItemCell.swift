@@ -25,61 +25,50 @@ class SearchListItemCell: UITableViewCell {
     
     @IBOutlet weak var downloadBtn: UIButton!
     
-    var app: App? {
-        didSet {
-            guard let app = app else { return }
-            let images = [previewImageView1, previewImageView2, previewImageView3]
-            
-            Service.loadImage(app.artworkUrl512)
-                .observe(on: MainScheduler.instance)
-                .bind(to: thumbImageView.rx.image)
-                .disposed(by: disposeBag)
-            thumbImageView.setBorderRound(cornerRadius: 10.0)
-            
-            titleLabel.text = app.trackName
-            descriptionLabel.text = app.description
-            downloadBtn.setBorderRound(cornerRadius: 15.0)
-            
-            for (index, url) in app.screenshotUrls.enumerated() {
-                if url.isWidthLongerThanHeight() {
-                    threeImageStackView.isHidden = true
-                    oneImageStackView.isHidden = false
-                    
-                    Service.loadImage(url)
-                        .observe(on: MainScheduler.instance)
-                        .bind(to: previewImageView.rx.image)
-                        .disposed(by: disposeBag)
-                    previewImageView.setBorderRound(cornerRadius: 10.0)
-                    break
-                    
-                } else {
-                    threeImageStackView.isHidden = false
-                    oneImageStackView.isHidden = true
-                    
-                    guard index < images.count , let imageView = images[index] else { return }
-                    Service.loadImage(url)
-                        .observe(on: MainScheduler.instance)
-                        .bind(to: imageView.rx.image)
-                        .disposed(by: disposeBag)
-                    imageView.setBorderRound(cornerRadius: 10.0)
-                }
-            }
-        }
-    }
-    
-    var disposeBag = DisposeBag()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-
+	var disposeBag = DisposeBag()
+	
+	func bindViewModel(viewModel: SearchListItemViewModel) {
+		viewModel.app.subscribe(onNext: { app in
+			viewModel.fetchImage(url: app.artworkUrl512)
+				.bind(to: self.thumbImageView.rx.image)
+				.disposed(by: self.disposeBag)
+			self.thumbImageView.setBorderRound(cornerRadius: 10.0)
+			
+			self.titleLabel.text = app.trackName
+			self.descriptionLabel.text = app.description
+			self.downloadBtn.setBorderRound(cornerRadius: 15.0)
+			
+			let images = [self.previewImageView1, self.previewImageView2, self.previewImageView3]
+			
+			for (index, url) in app.screenshotUrls.enumerated() {
+				if url.isWidthLongerThanHeight() {
+					self.threeImageStackView.isHidden = true
+					self.oneImageStackView.isHidden = false
+					
+					viewModel.fetchImage(url: url)
+						.bind(to: self.previewImageView.rx.image)
+						.disposed(by: self.disposeBag)
+					self.previewImageView.setBorderRound(cornerRadius: 10.0)
+					break
+				} else {
+					self.threeImageStackView.isHidden = false
+					self.oneImageStackView.isHidden = true
+					
+					guard index < images.count , let imageView = images[index] else { return }
+					viewModel.fetchImage(url: url)
+						.bind(to: imageView.rx.image)
+						.disposed(by: self.disposeBag)
+					imageView.setBorderRound(cornerRadius: 10.0)
+				}
+			}
+			
+		})
+		.disposed(by: disposeBag)
+	}
+	
     override func prepareForReuse() {
+		disposeBag = DisposeBag()
+		
         titleLabel.text = ""
         descriptionLabel.text = ""
         

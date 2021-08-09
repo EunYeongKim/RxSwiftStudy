@@ -38,7 +38,7 @@ class SearchListViewController: UIViewController {
         
         viewModel.appObservable
             .bind(to: tableView.rx.items(cellIdentifier: "searchListItem", cellType: SearchListItemCell.self)) { index, item, cell in
-                cell.app = item
+				cell.bindViewModel(viewModel: SearchListItemViewModel(app: item))
             }
             .disposed(by: disposeBag)
         

@@ -65,6 +65,22 @@ struct Service {
         }
     }
 	
+	static func requestData<T>(url: URL, type: T.Type, completion: @escaping(Result<T, APIError>) -> Void) {
+		let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
+			guard let data = data else {
+				completion(.failure(.dataNil))
+				return
+			}
+			if let convertedData = data as? T {
+				completion(.success(convertedData))
+			} else {
+				completion(.failure(.unknown))
+			}
+		}
+		
+		task.resume()
+	}
+	
 	static func request<T: Codable>(url: URL, type: T.Type, completion: @escaping(Result<T, APIError>) -> Void) {
 		let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
 			guard let data = data else {

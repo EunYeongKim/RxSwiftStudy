@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28641DF326AFF24800E1B78D /* SearchListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28641DF226AFF24800E1B78D /* SearchListItemViewModel.swift */; };
+		28641DFB26AFFF0000E1B78D /* SearchAppImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28641DFA26AFFF0000E1B78D /* SearchAppImageUseCase.swift */; };
+		28641DFF26AFFFF700E1B78D /* SearchAppImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28641DFE26AFFFF700E1B78D /* SearchAppImageRepository.swift */; };
 		28987AA52684405A00DDB689 /* SearchListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28987AA42684405A00DDB689 /* SearchListItemCell.swift */; };
 		28992E9326816FC3000E7BD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28992E9226816FC3000E7BD7 /* AppDelegate.swift */; };
 		28992E9526816FC3000E7BD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28992E9426816FC3000E7BD7 /* SceneDelegate.swift */; };
@@ -15,7 +17,7 @@
 		28992E9A26816FC3000E7BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28992E9826816FC3000E7BD7 /* Main.storyboard */; };
 		28992E9C26816FC5000E7BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28992E9B26816FC5000E7BD7 /* Assets.xcassets */; };
 		28992E9F26816FC5000E7BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28992E9D26816FC5000E7BD7 /* LaunchScreen.storyboard */; };
-		28992EAD26817182000E7BD7 /* AppStoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28992EAC26817182000E7BD7 /* AppStoreResponse.swift */; };
+		28992EAD26817182000E7BD7 /* AppDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28992EAC26817182000E7BD7 /* AppDTO.swift */; };
 		28992EB02681744F000E7BD7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28992EAF2681744F000E7BD7 /* Service.swift */; };
 		28C68A32268C27B500C36B7E /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C68A31268C27B500C36B7E /* UIImageView+.swift */; };
 		28C68A37268C33A100C36B7E /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C68A36268C33A100C36B7E /* UIButton+.swift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		28641DF226AFF24800E1B78D /* SearchListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemViewModel.swift; sourceTree = "<group>"; };
+		28641DFA26AFFF0000E1B78D /* SearchAppImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppImageUseCase.swift; sourceTree = "<group>"; };
+		28641DFE26AFFFF700E1B78D /* SearchAppImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppImageRepository.swift; sourceTree = "<group>"; };
 		28987AA42684405A00DDB689 /* SearchListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemCell.swift; sourceTree = "<group>"; };
 		28992E8F26816FC3000E7BD7 /* RxSwiftStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28992E9226816FC3000E7BD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +49,7 @@
 		28992E9B26816FC5000E7BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28992E9E26816FC5000E7BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28992EA026816FC5000E7BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28992EAC26817182000E7BD7 /* AppStoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreResponse.swift; sourceTree = "<group>"; };
+		28992EAC26817182000E7BD7 /* AppDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDTO.swift; sourceTree = "<group>"; };
 		28992EAF2681744F000E7BD7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		28C68A31268C27B500C36B7E /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		28C68A36268C33A100C36B7E /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				28F8836C26AA87BA005163FE /* SearchAppRepository.swift */,
+				28641DFE26AFFFF700E1B78D /* SearchAppImageRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				28F8836826AA85D1005163FE /* SearchAppUseCase.swift */,
+				28641DFA26AFFF0000E1B78D /* SearchAppImageUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -222,7 +228,7 @@
 		28F8836226AA81BD005163FE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				28992EAC26817182000E7BD7 /* AppStoreResponse.swift */,
+				28992EAC26817182000E7BD7 /* AppDTO.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -407,6 +413,8 @@
 				28992EB02681744F000E7BD7 /* Service.swift in Sources */,
 				28C68A37268C33A100C36B7E /* UIButton+.swift in Sources */,
 				28641DF326AFF24800E1B78D /* SearchListItemViewModel.swift in Sources */,
+				28641DFF26AFFFF700E1B78D /* SearchAppImageRepository.swift in Sources */,
+				28641DFB26AFFF0000E1B78D /* SearchAppImageUseCase.swift in Sources */,
 				28DA793A26A11248005F66FA /* SearchDetailViewModel.swift in Sources */,
 				28C68A32268C27B500C36B7E /* UIImageView+.swift in Sources */,
 				28DA78EC269EB5A3005F66FA /* ScreenShotImageCell.swift in Sources */,
@@ -414,7 +422,7 @@
 				28DA78D02698A666005F66FA /* Coordinator.swift in Sources */,
 				28987AA52684405A00DDB689 /* SearchListItemCell.swift in Sources */,
 				28992E9526816FC3000E7BD7 /* SceneDelegate.swift in Sources */,
-				28992EAD26817182000E7BD7 /* AppStoreResponse.swift in Sources */,
+				28992EAD26817182000E7BD7 /* AppDTO.swift in Sources */,
 				28F8836D26AA87BA005163FE /* SearchAppRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
