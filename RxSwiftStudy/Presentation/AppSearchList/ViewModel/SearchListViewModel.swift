@@ -16,6 +16,7 @@ class SearchListViewModel {
     var totalAppObservable = BehaviorSubject<[App]>(value: [])
     var appObservable = BehaviorRelay<[App]>(value: [])
 	var showLoading = BehaviorRelay<Bool>(value: false)
+	var showPrefetchingLoading = BehaviorRelay<Bool>(value: false)
 
     func fetchAppList(query: String) {
 		showLoading.accept(true)
@@ -50,10 +51,20 @@ class SearchListViewModel {
     
     func prefetchApp(indexPaths: [IndexPath]) {
         guard let indexPath = indexPaths.last else { return }
-        
+		
         if appObservable.value.count - 1 == indexPath.row {
+			showPrefetchingLoading.accept(true)
+		
             let appenedApps = appObservable.value + getAppList()
-            appObservable.accept(appenedApps)
+			appObservable
+				.delay(.seconds(3), scheduler: MainScheduler.instance)
+				.take(1)
+				.subscribe(onNext: { [weak self] apps in
+					guard let `self`  = self else { return }
+					self.appObservable.accept(appenedApps)
+					self.showPrefetchingLoading.accept(false)
+				})
+				.disposed(by: disposeBag)
         }
     }
 }

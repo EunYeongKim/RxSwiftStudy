@@ -52,6 +52,21 @@ class SearchListViewController: UIViewController {
                 self.viewModel.prefetchApp(indexPaths: indexPaths)
             })
             .disposed(by: disposeBag)
+		
+		viewModel.showPrefetchingLoading
+			.observe(on: MainScheduler.instance)
+			.subscribe(onNext: { [weak self] showLoading in
+				guard let `self` = self else { return }
+				if showLoading {
+					let spinner = UIActivityIndicatorView(style: .medium)
+					spinner.frame = CGRect(x: 0.0, y: 0.0, width: self.tableView.bounds.width, height: 60)
+					spinner.startAnimating()
+					self.tableView.tableFooterView = spinner
+				} else {
+					self.tableView.tableFooterView = nil
+				}
+			})
+			.disposed(by: disposeBag)
         
         tableView.rx.modelSelected(App.self).bind { app in
             let searchDetailViewModel = SearchDetailViewModel(appObservable: BehaviorRelay<App>(value: app))
